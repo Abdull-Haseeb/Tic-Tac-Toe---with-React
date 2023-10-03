@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* Style for the game container */
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+/* Style for the status message */
+.status {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style for the board rows */
+.board-row {
+  display: flex;
+}
+
+/* Style for the square buttons */
+.square {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+/* Add a new CSS class for winning squares */
+.winning {
+  background-color: yellow; /* Set the background color for winning squares */
+  color: black; /* Set the text color for winning squares */
+}
+
+/* Style for the square buttons on hover */
+.square:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style for the winner message */
+.winner {
+  color: green;
+}
+
+/* Style for the tie message */
+.tie {
+  color: #333;
+}
