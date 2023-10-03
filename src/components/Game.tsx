@@ -65,7 +65,7 @@ export default function Board() {
       <div className="status">{status}</div>
       <div className="board">
         {Array.from({ length: 3 }, (_, row) => (
-          <div key={row} className="board-row">
+          <div>
             {Array.from({ length: 3 }, (_, col) => renderSquare(row * 3 + col))}
           </div>
         ))}
