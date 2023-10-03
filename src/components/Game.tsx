@@ -1,10 +1,16 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./styles.css";
+
+interface SquareProps {
+  value: string;
+  onSquareClick: () => void;
+  isWinningSquare: boolean;
+}
 function Square({ value, onSquareClick, isWinningSquare }) {
   const squareClassName = isWinningSquare ? "square winning" : "square";
   return (
-    <button className="squareClassName" onClick={onSquareClick}>
+    <button className={squareClassName} onClick={onSquareClick}>
       {value}
     </button>
   );
@@ -12,6 +18,7 @@ function Square({ value, onSquareClick, isWinningSquare }) {
 Square.propTypes = {
   value: PropTypes.string.isRequired, // Assuming value is always a string
   onSquareClick: PropTypes.func.isRequired, // Make sure onSquareClick is a function
+  isWinningSquare: PropTypes.bool.isRequired,
 };
 
 export default function Board() {
@@ -35,30 +42,35 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = "Winner is: " + winner;
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
+  const isWinningSquare = (i) => {
+    return winner && winner === squares[i];
+  };
+  const renderSquare = (i) => {
+    return (
+      <Square
+        key={i}
+        value={squares[i]}
+        onSquareClick={() => handleClick(i)}
+        isWinningSquare={isWinningSquare(i)}
+      />
+    );
+  };
 
   return (
-    <>
+    <div className="game-board">
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+      <div className="board">
+        {Array.from({ length: 3 }, (_, row) => (
+          <div key={row} className="board-row">
+            {Array.from({ length: 3 }, (_, col) => renderSquare(row * 3 + col))}
+          </div>
+        ))}
       </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
-    </>
+    </div>
   );
 }
 

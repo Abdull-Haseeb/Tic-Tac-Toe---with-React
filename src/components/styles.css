@@ -1,5 +1,7 @@
 /* styles.css */
-
+h1 {
+  font-size: 100px;
+}
 /* Style for the game container */
 .game {
   display: flex;
@@ -11,8 +13,8 @@
 
 /* Style for the status message */
 .status {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 64px;
+  margin: 20px;
 }
 
 /* Style for the board rows */
@@ -23,8 +25,6 @@
 /* Style for the square buttons */
 .square {
   font-size: 24px;
-  width: 50px;
-  height: 50px;
   margin: 5px;
   display: flex;
   justify-content: center;
@@ -33,8 +33,12 @@
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  /* Add a new CSS class for winning squares */
+  width: 100px;
+  font-size: 80px;
+  height: 100px;
+  border-radius: 10px;
 }
-/* Add a new CSS class for winning squares */
 .winning {
   background-color: yellow; /* Set the background color for winning squares */
   color: black; /* Set the text color for winning squares */
