@@ -58,7 +58,7 @@ function Board({ xIsNext, squares, onPlay }) {
 
   return (
     <div className="game-board">
-      <div className="status">{status}</div>
+      <div className="status winning">{status}</div>
       <div className="board-container">
         {Array.from({ length: 3 }, (_, row) => (
           <div className="row">
@@ -71,40 +71,49 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 
 export default function Game() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
+  // const [squares, setSquares] = useState(Array(9).fill(null));
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[history.length - 1];
+  const xIsNext = currentMove % 2 === 0;
+
   function handlePlay(nextSquares) {
-    setHistory([...history, nextSquares]);
-    setXIsNext(!xIsNext);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
   function jumpTo(nextMove) {
-    const moves = history.map((squares, move) => {
-      let discription;
-      if (move > 0) {
-        discription = "Go to " + move;
-      } else {
-        discription = "Go to start of the game";
-      }
-      return (
-        <li>
-          <button onClick={() => jumpTo(move)}>{discription}</button>
-        </li>
-      );
-    });
+    setCurrentMove(nextMove);
   }
+  const moves = history.map((squares, move) => {
+    let discription;
+    if (move > 0) {
+      discription = "Go to " + move;
+    } else {
+      discription = "Go to start of the game";
+    }
+    return (
+      <li key={move}>
+        <button className="history-button" onClick={() => jumpTo(move)}>
+          {discription}
+        </button>
+      </li>
+    );
+  });
+
   return (
     <div className="game">
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>{moves}</ol>
+        <ol className="history-list-parent">{moves}</ol>
       </div>
     </div>
   );
 }
+
+// See you later
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],

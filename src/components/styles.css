@@ -5,7 +5,7 @@ h1 {
 /* Style for the game container */
 .game {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   font-family: Arial, sans-serif;
   margin-top: 20px;
@@ -14,7 +14,35 @@ h1 {
   position: relative;
   overflow: hidden;
 }
-
+.history-button {
+  font-size: 25px;
+  min-width: 300px;
+  cursor: pointer;
+  min-height: 30px;
+  border: 1px solid #ff0000;
+  border-radius: 20px;
+  background-color: #ff0055;
+}
+.history-button:hover {
+  background-color: #ff005599;
+}
+.history-list-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+}
+.game-info {
+  width: 400px;
+  height: auto;
+  display: flex;
+  align-items: self-start;
+  justify-content: flex-start;
+}
+.game-board {
+  width: 400px;
+  height: auto;
+}
 /* Style for the status message */
 .status {
   font-size: 64px;
@@ -44,18 +72,18 @@ h1 {
   border-radius: 10px;
 }
 .winning {
-  background-color: yellow; /* Set the background color for winning squares */
+  background-color: #2fff00; /* Set the background color for winning squares */
   color: black; /* Set the text color for winning squares */
 }
 
 /* Style for the square buttons on hover */
 .square:hover {
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
 }
 
 /* Style for the winner message */
 .winner {
-  color: green;
+  /* color: #2fff00; */
 }
 
 /* Style for the tie message */
