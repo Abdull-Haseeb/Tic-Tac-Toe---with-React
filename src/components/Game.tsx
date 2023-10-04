@@ -59,9 +59,9 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <div className="game-board">
       <div className="status winning">{status}</div>
-      <div key={row} className="board-container">
+      <div className="board-container">
         {Array.from({ length: 3 }, (_, row) => (
-          <div className="row">
+          <div className="row" key={row}>
             {Array.from({ length: 3 }, (_, col) => renderSquare(row * 3 + col))}
           </div>
         ))}
