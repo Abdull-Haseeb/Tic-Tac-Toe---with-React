@@ -9,6 +9,10 @@ h1 {
   align-items: center;
   font-family: Arial, sans-serif;
   margin-top: 20px;
+  width: auto;
+  height: auto; /* Allow the height to adjust based on content */
+  position: relative;
+  overflow: hidden;
 }
 
 /* Style for the status message */
@@ -57,4 +61,7 @@ h1 {
 /* Style for the tie message */
 .tie {
   color: #333;
+}
+.board-container {
+  display: flex;
 }
