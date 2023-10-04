@@ -59,7 +59,7 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <div className="game-board">
       <div className="status winning">{status}</div>
-      <div className="board-container">
+      <div key={row} className="board-container">
         {Array.from({ length: 3 }, (_, row) => (
           <div className="row">
             {Array.from({ length: 3 }, (_, col) => renderSquare(row * 3 + col))}
@@ -107,7 +107,7 @@ export default function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol className="history-list-parent">{moves}</ol>
+        <ol>{moves}</ol>
       </div>
     </div>
   );
